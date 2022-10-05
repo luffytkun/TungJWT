@@ -1,6 +1,6 @@
 package tung.com.jwt.service.impl;
 
-;
+
 import java.util.List;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -22,17 +22,16 @@ public class UserServiceImpl implements UserService {
     this.passwordEncoder = new BCryptPasswordEncoder();
   }
 
-
-
   @Override
   public List<User> getAllU() {
     return userRepo.findAll();
   }
 
   @Override
-  public User save(User user) {
+  public String save(User user) {
     user.setPassword(passwordEncoder.encode(user.getPassword()));
-    return userRepo.save(user);
+   userRepo.save(user);
+   return "save seccesful";
   }
 
   @Override

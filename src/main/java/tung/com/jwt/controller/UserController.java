@@ -1,7 +1,10 @@
 package tung.com.jwt.controller;
 
 
+import java.io.*;
 import java.util.List;
+
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -20,6 +23,7 @@ import tung.com.jwt.entity.User;
 import tung.com.jwt.service.UserService;
 
 @RestController
+@SecurityRequirement(name = "javainuseapi")
 public class UserController {
   @Autowired
   UserService userService;
@@ -31,7 +35,7 @@ public class UserController {
   AuthenticationManager authenticationManager;
 
   @PostMapping( "/logina")
-  public LoginResponse authenticateUser( @RequestBody LoginRequest loginRequest) {
+  public LoginResponse authenticateUser(@RequestBody LoginRequest loginRequest) {
 
     // Xác thực từ username và password.
     Authentication authentication = authenticationManager.authenticate(
@@ -52,7 +56,7 @@ public class UserController {
 
 
   @PostMapping("/user")
-  public User createUser(@RequestBody User user) {
+  public String createUser(@RequestBody User user) {
     return this.userService.save(user);
   }
 
@@ -61,6 +65,7 @@ public class UserController {
   public List<User> getAll(){
     return userService.getAllU();
   }
+
 
 
 }

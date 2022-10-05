@@ -16,7 +16,7 @@ import tung.com.jwt.entity.CustomUserDetails;
 @Slf4j
 public class JwtTokenProvider {
     // đoạn JWT_SECRET là bí mật,  chỉ phía server mới biết
-    private final String JWT_SECRET = "loda";
+    private final String JWT_SECRET = "Tungk";
 
     //thời gian có hiệu lực của jwt
     private final long JWT_EXPIRATION = 604800000L;
